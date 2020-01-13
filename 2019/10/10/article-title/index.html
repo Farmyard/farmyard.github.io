@@ -27,7 +27,7 @@
 
 
 
-  <link rel="stylesheet" href="/lib/prettify/tomorrow-night-eighties.min.css"  >
+  <link rel="stylesheet" href="/lib/prettify/tomorrow.min.css"  >
 
 <link rel="stylesheet" href="/css/main.css"  >
 
@@ -107,7 +107,7 @@
 </nav>
 
     <div class="view intro-2" id="background"
-         style="background: url('/img/default.png')no-repeat center center;
+         style="background: url('/img/avatar.png')no-repeat center center;
            background-size: cover;
            background-attachment: fixed;">
       <div class="full-bg-img">
@@ -177,16 +177,21 @@
 <li>Protobuf：语言无关的高效数据交换协议，用于支持gRPC在不同语言间序列化和反序列化数据，具体的数据交换约定由.proto文件定义</li>
 </ul>
 <h1 id="安装protobuf"><a href="#安装protobuf" class="headerlink" title="安装protobuf"></a>安装protobuf</h1><p>在 mac 下安装</p>
-<pre><code>$ brew install protobuf</code></pre><p>在 linux 下安装 </p>
+<pre><code>$ brew install protobuf
+</code></pre><p>在 linux 下安装 </p>
 <pre><code>$ tar -zxvf protobuf-all-3.5.1.tar.gz
 $ cd protobuf-3.5.1
 $ ./configure
 $ make 
-$ make install</code></pre><p>在 Windows 下安装</p>
+$ make install
+</code></pre><p>在 Windows 下安装</p>
 <p>参考【<a href="https://blog.csdn.net/uisoul/article/details/90483050" target="_blank" rel="noopener">PHP 中使用 gRPC 客户端</a>】</p>
 <p>查看 protobuf 版本</p>
-<pre><code>$ protoc --version</code></pre><h1 id="安装-php-的-grpc-扩展"><a href="#安装-php-的-grpc-扩展" class="headerlink" title="安装 php 的 grpc 扩展"></a>安装 php 的 grpc 扩展</h1><pre><code>$ pecl install grpc</code></pre><h1 id="安装-php-的-protobuf-扩展"><a href="#安装-php-的-protobuf-扩展" class="headerlink" title="安装 php 的 protobuf 扩展"></a>安装 php 的 protobuf 扩展</h1><pre><code>$ pecl install grpc</code></pre><h1 id="安装-grpc-php-plugin"><a href="#安装-grpc-php-plugin" class="headerlink" title="安装 grpc_php_plugin"></a>安装 grpc_php_plugin</h1><p>在 mac 下安装</p>
-<pre><code class="bash">$ brew install grpc // 不包括 grpc_go_plugin 包括以下 plugin
+<pre><code>$ protoc --version
+</code></pre><h1 id="安装-php-的-grpc-扩展"><a href="#安装-php-的-grpc-扩展" class="headerlink" title="安装 php 的 grpc 扩展"></a>安装 php 的 grpc 扩展</h1><pre><code>$ pecl install grpc
+</code></pre><h1 id="安装-php-的-protobuf-扩展"><a href="#安装-php-的-protobuf-扩展" class="headerlink" title="安装 php 的 protobuf 扩展"></a>安装 php 的 protobuf 扩展</h1><pre><code>$ pecl install grpc
+</code></pre><h1 id="安装-grpc-php-plugin"><a href="#安装-grpc-php-plugin" class="headerlink" title="安装 grpc_php_plugin"></a>安装 grpc_php_plugin</h1><p>在 mac 下安装</p>
+<pre><code class="lang-bash">$ brew install grpc // 不包括 grpc_go_plugin 包括以下 plugin
 // grpc_cli
 // grpc_cpp_plugin
 // grpc_csharp_plugin
@@ -194,31 +199,39 @@ $ make install</code></pre><p>在 Windows 下安装</p>
 // grpc_objective_c_plugin
 // grpc_php_plugin
 // grpc_python_plugin
-// grpc_ruby_plugin</code></pre>
+// grpc_ruby_plugin
+</code></pre>
 <p>其他平台可以通过以下方式安装</p>
 <pre><code>$ git clone -b $(curl -L https://grpc.io/release) https://github.com/grpc/grpc
 $ cd grpc
 $ git submodule update --init
-$ make grpc_php_plugin</code></pre><h1 id="使用-composer-管理依赖加载"><a href="#使用-composer-管理依赖加载" class="headerlink" title="使用 composer 管理依赖加载"></a>使用 composer 管理依赖加载</h1><p>安装依赖</p>
+$ make grpc_php_plugin
+</code></pre><h1 id="使用-composer-管理依赖加载"><a href="#使用-composer-管理依赖加载" class="headerlink" title="使用 composer 管理依赖加载"></a>使用 composer 管理依赖加载</h1><p>安装依赖</p>
 <pre><code>$ composer require &quot;grpc/grpc&quot; 
-$ composer require &quot;google/protobuf&quot;</code></pre><p>修改composer.json</p>
+$ composer require &quot;google/protobuf&quot;
+</code></pre><p>修改composer.json</p>
 <pre><code>&quot;autoload&quot;: {
     ...,
     &quot;psr-4&quot;:{
         &quot;GPBMetadata\\&quot;:&quot;Micro/GPBMetadata/&quot;,
         &quot;Protobuf\\&quot;:&quot;Micro/Protobuf/&quot;
     }
-},</code></pre><pre><code>$ composer dump-autoload</code></pre><h1 id="proto-规范"><a href="#proto-规范" class="headerlink" title=".proto 规范"></a>.proto 规范</h1><p>修改 user.proto 文件 package，避免生成的 php 文件目录太深，package 对应 php 中 namespace Protobuf/User</p>
+},
+</code></pre><pre><code>$ composer dump-autoload
+</code></pre><h1 id="proto-规范"><a href="#proto-规范" class="headerlink" title=".proto 规范"></a>.proto 规范</h1><p>修改 user.proto 文件 package，避免生成的 php 文件目录太深，package 对应 php 中 namespace Protobuf/User</p>
 <pre><code>syntax = &quot;proto3&quot;;
 // package chuman.micro.app.user.srv; 
 package protobuf.user;
-... </code></pre><p>Response message 字段名为小驼峰，因为数据库中的字段名都是小驼峰。避免php需要将大驼峰转小驼峰</p>
+...
+</code></pre><p>Response message 字段名为小驼峰，因为数据库中的字段名都是小驼峰。避免php需要将大驼峰转小驼峰</p>
 <pre><code>message UserResponse {
     int64 id=1;
     string nickname=2;
-}</code></pre><h1 id="执行编译-proto-命令，生成php客户端基类"><a href="#执行编译-proto-命令，生成php客户端基类" class="headerlink" title="执行编译 .proto 命令，生成php客户端基类"></a>执行编译 .proto 命令，生成php客户端基类</h1><pre><code>// .proto 放在 gugu/Micro 下
+}
+</code></pre><h1 id="执行编译-proto-命令，生成php客户端基类"><a href="#执行编译-proto-命令，生成php客户端基类" class="headerlink" title="执行编译 .proto 命令，生成php客户端基类"></a>执行编译 .proto 命令，生成php客户端基类</h1><pre><code>// .proto 放在 gugu/Micro 下
 $ cd gugu/Micro
-$ protoc --php_out=../Micro --grpc_out=../Micro --plugin=protoc-gen-grpc=/usr/local/bin/grpc_php_plugin user.proto</code></pre><blockquote>
+$ protoc --php_out=../Micro --grpc_out=../Micro --plugin=protoc-gen-grpc=/usr/local/bin/grpc_php_plugin user.proto
+</code></pre><blockquote>
 <p><a href="http://doc.oschina.net/grpc" target="_blank" rel="noopener">gRPC 官方文档中文版</a></p>
 </blockquote>
 
