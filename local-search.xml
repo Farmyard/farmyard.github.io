@@ -4,6 +4,50 @@
   
   
   <entry>
+    <title>docker mysql</title>
+    <link href="/2020/01/15/docker-mysql/"/>
+    <url>/2020/01/15/docker-mysql/</url>
+    
+    <content type="html"><![CDATA[<h2 id="ERROR-2059-HY000-Authentication-plugin-‘caching-sha2-password’-cannot-be-loaded"><a href="#ERROR-2059-HY000-Authentication-plugin-‘caching-sha2-password’-cannot-be-loaded" class="headerlink" title="ERROR 2059 (HY000): Authentication plugin ‘caching_sha2_password’ cannot be loaded"></a>ERROR 2059 (HY000): Authentication plugin ‘caching_sha2_password’ cannot be loaded</h2><p>修改密码</p><pre><code>$ ALTER USER &#39;root&#39;@&#39;%&#39; IDENTIFIED WITH mysql_native_password BY &#39;root&#39;;</code></pre>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>docker</tag>
+      
+      <tag>mysql</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>go tool pprof</title>
+    <link href="/2020/01/14/go-tool-pprof/"/>
+    <url>/2020/01/14/go-tool-pprof/</url>
+    
+    <content type="html"><![CDATA[<h2 id="通过交互式终端使用"><a href="#通过交互式终端使用" class="headerlink" title="通过交互式终端使用"></a>通过交互式终端使用</h2><p>方法一：</p><pre><code>$ go tool pprof -http=:8080 http://&lt;ip&gt;:&lt;port&gt;/debug/pprof/profile\?seconds\=60</code></pre><p>方法二：</p><pre><code>$ go tool pprof http://&lt;ip&gt;:&lt;port&gt;/debug/pprof/profile\?seconds\=60$ (pprof) web</code></pre>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>go-torch</tag>
+      
+      <tag>pprof</tag>
+      
+      <tag>FlameGraph</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Hello World</title>
     <link href="/2020/01/12/hello-world/"/>
     <url>/2020/01/12/hello-world/</url>
